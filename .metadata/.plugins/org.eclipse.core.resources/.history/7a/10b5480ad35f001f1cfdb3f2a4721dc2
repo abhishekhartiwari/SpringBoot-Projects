@@ -1,0 +1,5 @@
+package com.abhi.dao;
+
+public interface BookRepository {
+
+}

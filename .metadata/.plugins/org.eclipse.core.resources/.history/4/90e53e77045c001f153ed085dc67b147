@@ -1,0 +1,25 @@
+package com.abhi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.abhi.dao.UserRepo;
+import com.abhi.entities.User;
+
+@SpringBootApplication
+public class SpringJpaApplication {
+
+	public static void main(String[] args) {
+		
+		ConfigurableApplicationContext context = SpringApplication.run(SpringJpaApplication.class, args);
+		UserRepo repo = context.getBean(UserRepo.class);
+		User user = new User();
+		//user.setId(10);
+		user.setName("Abhishek Tiwari");
+		
+		
+		User user1 = repo.save(user);
+	}
+
+}

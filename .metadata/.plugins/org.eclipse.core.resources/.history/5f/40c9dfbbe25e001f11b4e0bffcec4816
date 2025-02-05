@@ -1,0 +1,32 @@
+package com.abhi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.abhi.dao.StudentRepository;
+import com.abhi.entities.Student;
+
+@SpringBootApplication
+public class SpringJpaApplication {
+
+	public static void main(String[] args) {
+		
+		ConfigurableApplicationContext context = SpringApplication.run(SpringJpaApplication.class, args);
+		StudentRepository repo = context.getBean(StudentRepository.class);
+		Student user = new Student();
+		//user.setId(1);
+//		user.setName("Pinky");
+//		user.setAddress("Delhi");
+//		
+//		
+//		Student user1 = repo.save(user);
+//		System.out.println("user1 "+user1);
+		
+		
+		//find student by name
+		
+		List<Student> student = user.
+	}
+
+}

@@ -1,0 +1,73 @@
+package com.abhi.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.abhi.entities.Book;
+import com.abhi.services.BookService;
+
+@RestController
+public class BookController {
+	
+	@Autowired
+	private BookService bookservice;
+	
+	@GetMapping("/books")
+	public ResponseEntity<List<Book>> getBooks() {
+		
+		List<Book> books = bookservice.getAllBooks();
+		if(books.size()<=0) {
+			System.out.println("Code-- "+ResponseEntity.notFound());
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return ResponseEntity.of(Optional.of(books));
+	}
+	
+	
+	@GetMapping("/book/{id}")
+	public ResponseEntity<Book> getBook(@PathVariable("id") int id) {
+		Book book = bookservice.getOneBook(id);
+		if(book==null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return ResponseEntity.of(Optional.of(book));
+	}
+	
+	@PostMapping("/books")
+	public ResponseEntity<Book> addBook(@RequestBody Book b) {
+		Book bb = null;
+		try {
+			bb = this.bookservice.addBook(b);
+			return ResponseEntity.of(Optional.of(bb));
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		//return bb;
+	}
+	
+	@DeleteMapping("/books/{id}")
+	public void deleteBook(@PathVariable("id") int id) {
+		this.bookservice.deleteBook(id);
+	}
+	
+	@PutMapping("/books/{id}")
+	public Book updateBook(@RequestBody Book b, @PathVariable("id") int id) {
+		this.bookservice.updateBook( b, id);
+		return b;
+	}
+
+}

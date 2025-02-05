@@ -1,0 +1,15 @@
+package com.abhi;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class TestController {
+
+	public String add() {
+		
+		int a = 21;
+		int b = 21;
+		return "addition of two numbers is" + a + b;
+	}
+	
+}

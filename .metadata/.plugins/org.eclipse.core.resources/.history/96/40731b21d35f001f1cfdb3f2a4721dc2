@@ -1,0 +1,9 @@
+package com.abhi.dao;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.abhi.entities.Book;
+
+public interface BookRepository extends CrudRepository<Book, ID>{
+
+}

@@ -1,0 +1,31 @@
+package com.abhi.services;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.abhi.entities.Book;
+
+public class BookService {
+	
+	private static List<Book> book = new ArrayList<>();
+	
+	static {
+		book.add( new Book(1, "Java", "Chunky"));
+		book.add( new Book(2, "Python", "Monkey"));
+		book.add( new Book(3, "C#", "Donkey"));
+		book.add( new Book(4, "Cobol", "Bunty"));
+	}
+	
+	public List<Book> getAllBooks() {
+		
+		return book;
+	}
+	
+	public Book getOneBook(int id) {
+		Book book1 = null;
+		book1 =  book.stream().filter(e->e.getId() == id).findFirst().get();
+		return book1;
+	}
+
+}

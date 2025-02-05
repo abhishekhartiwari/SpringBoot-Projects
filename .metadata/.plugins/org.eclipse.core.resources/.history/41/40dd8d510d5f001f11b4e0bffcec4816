@@ -1,0 +1,17 @@
+package com.abhi;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class TestController {
+
+	@RequestMapping(/test)
+	public String add() {
+		
+		int a = 21;
+		int b = 21;
+		return "addition of two numbers is" + a + b;
+	}
+	
+}

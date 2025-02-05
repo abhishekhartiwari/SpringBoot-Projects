@@ -1,0 +1,17 @@
+package com.abhi.dao;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.abhi.entities.Student;
+
+public interface StudentRepository extends CrudRepository<Student, Integer>{
+	
+	//custom finder method
+	public List<Student> findStudentByName(String name);
+	
+	//JPQL technique
+	public List<Student> findUserById(int id);
+
+}
